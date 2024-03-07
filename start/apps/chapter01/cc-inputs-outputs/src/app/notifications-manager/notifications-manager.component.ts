@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-notifications-manager',
@@ -6,20 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./notifications-manager.component.scss'],
 })
 export class NotificationsManagerComponent {
-  notificationsCount = 0;
+  @Input() count = 0;
+  @Output() countChanged = new EventEmitter<number>();
 
   addNotification() {
-    this.notificationsCount++;
+    this.count++;
+    this.countChanged.emit(this.count);
   }
 
   removeNotification() {
-    if (this.notificationsCount == 0) {
+    if (this.count == 0) {
       return;
     }
-    this.notificationsCount--;
+    this.count--;
+    this.countChanged.emit(this.count);
   }
 
   resetCount() {
-    this.notificationsCount = 0;
+    this.count = 0;
+    this.countChanged.emit(this.count);
   }
 }

@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  notificationsCount = 10;
+
+  updateNotificationsCount(count: number) {
+    this.notificationsCount = count;
+  }
+}
